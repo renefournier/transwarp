@@ -1,0 +1,22 @@
+
+
+ffmpeg -f lavfi -i anullsrc=channel_layout=5.1:sample_rate=48000 -t 1 silence.ac3
+
+
+ffmpeg -i file1.m4a -i file2.m4a -f lavfi -t 5 -i anullsrc -filter_complex "[0][2][1]concat=n=3:v=0:a=1" file3.m4a
+
+
+ffmpeg -i file3.m4a -f segment -segment_time 3 -c copy out%03d.m4a
+
+flite=textfile=speech.txt
+
+
+ffplay -f lavfi flite=textfile=speech.txt
+
+
+
+ffmpeg -i file3.m4a -af silencedetect=noise=0.000001 -f null -
+
+ffmpeg -i file3.m4a -af silencedetect=noise=0.000001 -f null
+
+ffmpeg -i "file3.m4a" -af silencedetect=noise=0.000001 -f null - 2> vol.txt
