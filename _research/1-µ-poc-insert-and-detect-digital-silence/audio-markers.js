@@ -1,8 +1,8 @@
 const ffmpeg = require("fluent-ffmpeg");
 
-const big = "./_media/big.m4v";
-const wt = "./_media/w_E_202005_01.mp3";
-const test = "./_media/file3.m4a";
+const big = "../../_media/big.m4v";
+const wt = "../../_media/w_E_202005_01.mp3";
+const test = "../../_media/file3.m4a";
 
 // ffmpeg -i file3.m4a -af silencedetect=noise=0.000001 -f null -
 
@@ -30,7 +30,7 @@ const test = "./_media/file3.m4a";
 //   console.dir(filters);
 // });
 
-ffmpeg(big)
+ffmpeg(test)
   .audioFilters("silencedetect=n=0.000001")
   .on("start", function (commandLine) {
     console.log("Spawned Ffmpeg with command: " + commandLine);
